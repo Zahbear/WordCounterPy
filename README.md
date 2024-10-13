@@ -65,10 +65,10 @@ Core Libraries:
 ## Future Improvements
 The following features are planned for future releases:
 
-1. **File selection:**
+1. **File selection: COMPLETED**
     - Allows user to select a file, eventually by navigating to a file, and select it for analysis
 
-2. **File alaysis:**
+2. **File alaysis: Implemented - improving result output**
     - Will analyze selected file, mapping occurrances of individual words, along with a way to present the results
 
 3. **Result sorting:**
