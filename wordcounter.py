@@ -1,8 +1,9 @@
 # wordcounter.py
 
 import sys
-from shared_functions import display_file_contents, load_file, analyze_word_count  # Import from shared_functions
+from PyQt5.QtWidgets import QApplication  # Import QApplication here
 from word_counter_gui import WordCounterApp  # Import the GUI
+from shared_functions import display_file_contents, load_file, analyze_word_count  # Import from shared_functions
 
 def main_menu():
     while True:
@@ -34,8 +35,10 @@ def exit_application():
     exit()
 
 def launch_gui():
-    app = WordCounterApp() # Create the GUI instance
-    app.show()
+    app = QApplication(sys.argv)  # Create the QApplication instance
+    window = WordCounterApp()  # Create the GUI instance
+    window.show()
+    sys.exit(app.exec_())  # Start the event loop
 
 
 #    file_path = input("Enter the path of the file: ")
