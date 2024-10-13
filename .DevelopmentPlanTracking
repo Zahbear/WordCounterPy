@@ -1,0 +1,158 @@
+Enhanced Development Plan for WordCounter
+0. Core Setup
+
+0.1. Set Up Terminal Access
+
+    0.1.1: Verify terminal access for executing Python scripts.
+    0.1.2: Create a blank project directory.
+    0.1.3: Confirm that Python is installed and accessible from the terminal.
+
+0.2. File Structure
+
+    0.2.1: Create wordcounter.py as the main application file.
+    0.2.2: Create input.txt with sample text for testing.
+    0.2.3: Set up a .gitignore file to exclude unnecessary files in version control (if using Git).
+
+1. User Interface and Interactivity
+
+1.1. Text Presentation
+
+    1.1.1: Implement a function to display a welcome message upon running wordcounter.py.
+    1.1.2: Include brief instructions on how to navigate the menu.
+
+1.2. User Interactive Menu
+
+    1.2.1: Design the main menu layout and options.
+    1.2.2: Implement input handling to capture user selection.
+    1.2.3: Create functions for each menu option that will be accessible, including:
+        1.2.3.1: Presentation of the application (similar to presentation() in Java).
+        1.2.3.2: File selection.
+        1.2.3.3: File analysis.
+
+1.3. Additional Menus for Future Functionality
+
+    1.3.1: Draft a layout for potential submenus for future features.
+    1.3.2: Create placeholder functions for submenu options.
+
+1.4. Exception Handling
+
+    1.4.1: Implement try-except blocks around user input handling to catch invalid inputs.
+    1.4.2: Create custom error messages for user guidance.
+    1.4.3: Ensure that the program can handle missing files gracefully.
+
+2. File Manipulation
+
+2.1. File Selection
+
+    2.1.1: Create a method for selecting a file to read (similar to selectFile()).
+    2.1.2: Implement a confirmation message for the selected file.
+
+2.2. Directory Check
+
+    2.2.1: Write a function to list non-hidden files in the current directory.
+    2.2.2: Allow users to select from this list.
+
+2.3. Valid Path Request
+
+    2.3.1: Implement a loop that prompts the user for a valid file path.
+    2.3.2: Validate that the selected path leads to an actual file.
+
+2.4. Exit File Selection
+
+    2.4.1: Provide the option to exit the selection process using a specific string (e.g., "exit").
+    2.4.2: Confirm the exit action to avoid accidental exits.
+
+2.5. New File Selection
+
+    2.5.1: Implement a function to reset the current file selection.
+    2.5.2: Allow the user to select a different file while providing an option to discard the current selection.
+
+3. File Analysis
+
+3.1. Reading Contents
+
+    3.1.1: Develop a method to read the contents of the selected file (similar to readFile()).
+    3.1.2: Implement error handling for issues like file not found or unreadable content.
+
+3.2. Tracking Words
+
+    3.2.1: Write a function to split the text into individual words (similar to countWordsAndAnalyze()).
+    3.2.2: Implement logic to handle blank spaces and special characters.
+    3.2.3: Strip punctuation from words before counting occurrences.
+
+3.3. Word Occurrence Tracking
+
+    3.3.1: Implement a dictionary (or collections.Counter) to track word occurrences efficiently.
+    3.3.2: Develop a method to populate this data structure as the file is read.
+
+3.4. Output Messages
+
+    3.4.1: Create output messages to display file contents in a user-friendly manner (like printFileContents()).
+    3.4.2: Provide options to show the entire content or a summary.
+
+3.5. Menu Integration
+
+    3.5.1: Include options in the user menu for reading and displaying file contents.
+    3.5.2: Ensure the menu can trigger the reading and output functions.
+
+4. Result Output
+
+4.1. Result Output Formatting
+
+    4.1.1: Create a function to output the word counts to the user (similar to printWordCountResults()).
+    4.1.2: Format the output to display the word and its count clearly.
+
+4.2. Advanced Formatting Options
+
+    4.2.1: Implement formatting options (e.g., align text, add separators).
+    4.2.2: Consider options for color-coding or highlighting important results.
+
+4.3. Sort and Filter Output
+
+    4.3.1: Implement options for sorting results alphabetically or by occurrence.
+    4.3.2: Allow filtering of results to show only a specified number of entries.
+
+5. Output Formatting
+
+5.1. Formatted Output Options
+
+    5.1.1: Develop options for displaying results in various formats (e.g., lists, tables).
+    5.1.2: Ensure that users can select their preferred output format.
+
+5.2. Use of Libraries
+
+    5.2.1: Research libraries like prettytable or tabulate for formatting output.
+    5.2.2: Implement the chosen library into the output formatting functions.
+
+6. User Interaction and Customization
+
+6.1. Enhanced Menu Features
+
+    6.1.1: Implement menu options for sorting results alphabetically or by occurrence.
+    6.1.2: Allow filtering of results to show only a specified number of entries.
+
+6.2. Windowed Interface Planning
+
+    6.2.1: Research GUI libraries (e.g., Tkinter, PyQt) for potential future implementation.
+    6.2.2: Draft mock-ups of the GUI layout and user flow.
+
+7. Versioning Strategy
+
+    7.1: Each implementation will be versioned systematically:
+        Version 1.0: Core Setup.
+        Version 1.1: File Manipulation.
+        Version 1.2: File Analysis.
+        Version 2.0: Output Formatting.
+        Version 2.1: User Interaction and Customization.
+
+8. Configuration Management (New Section)
+
+8.1. Configuration File Handling
+
+    8.1.1: Implement functionality to read and write a configuration file for user settings (similar to Config in Java).
+    8.1.2: Allow users to set preferences, such as the word count limit, which can be loaded upon starting the application.
+    8.1.3: Implement default settings if the configuration file does not exist.
+
+Conclusion
+
+This updated plan now incorporates elements directly from your Java code, such as configuration management and file selection, ensuring that key functionalities are documented and outlined for implementation in Python. If there are any specific areas you’d like to delve deeper into or additional features to consider, feel free to reach out!
