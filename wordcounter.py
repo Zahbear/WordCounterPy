@@ -1,9 +1,12 @@
 # wordcounter.py
 
 import sys
+import os
 from PyQt5.QtWidgets import QApplication  # Import QApplication here
 from word_counter_gui import WordCounterApp  # Import the GUI
-from shared_functions import display_file_contents, load_file, analyze_word_count  # Import from shared_functions
+from shared_functions import display_file_contents, load_file_contents, analyze_word_count  # Import from shared_functions
+
+file_contents = None
 
 def main_menu():
     while True:
@@ -19,7 +22,8 @@ def handle_menu_choice(choice):
     if choice == "1":
         display_presentation()
     elif choice == "2":
-        load_file()
+        file_path = load_file()
+        file_contents = load_file_contents(file_path)
     elif choice == "3":
         analyze_word_count()
     elif choice == "0":
@@ -40,37 +44,28 @@ def launch_gui():
     window.show()
     sys.exit(app.exec_())  # Start the event loop
 
+def load_file():
+    global file_contents  # Using the global variable
+    file_path = input("Enter the path of the file (leave empty for default directory): ")
 
-#    file_path = input("Enter the path of the file: ")
-#    try:
-#        with open(file_path, 'r') as file:
-#            print(f"File {file_path} loaded successfully.")
-#            # Store contents for analysis later
-#    except FileNotFoundError:
-#        print(f"File not found: {file_path}")
+    if not file_path:  # if no input, default to the current directory
+        file_path = os.path.join(os.getcwd(), 'input.txt')
 
-#def read_file(file_path):
-#    try:
-#        with open(file_path, 'r') as file:
-#            content = file.read()
-#            return content
-#    except Exception as e:
-#        print(f"Error reading file: {e}")
-#        return None
+    file_contents = load_file_contents(file_path)  # Call shared function
+    if file_contents is not None:
+        print(f"File '{file_path}' loaded successfully.")
+    else:
+        print(f"File not found: {file_path}")
 
-#def count_words(content):
-#    words = content.split()
-#    word_count = {}
-#    for word in words:
-#        word = word.lower().strip(",.!?\"'")  # Normalize and strip punctuation
-#        word_count[word] = word_count.get(word, 0) + 1
-#    return word_count
+    return file_path 
 
-#def display_word_count(word_count):
-#    for word, count in word_count.items():
-#        print(f"{word}: {count}")
-
-
+def analyze_word_count():
+    if file_contents is not None:
+        # Perform analysis on file_contents here
+        print("Analyzing contents...")
+        # Analysis logic here
+    else:
+        print("No file loaded for analysis.")             
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == '--gui':
