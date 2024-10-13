@@ -19,6 +19,10 @@ def load_file_contents(file_path):
     except Exception as e:
         return str(e)
 
-def analyze_word_count():
-    print("Analyzing file")  # Implement actual analysis logic as needed
-
+def analyze_word_count(contents):
+    if contents is None:
+        return "No contents to analyze."
+    words = contents.split()
+    word_count = len(words)
+    unique_word_count = len(set(words))
+    return f"Total words: {word_count}, Unique words: {unique_word_count}"

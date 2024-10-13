@@ -22,10 +22,10 @@ def handle_menu_choice(choice):
     if choice == "1":
         display_presentation()
     elif choice == "2":
-        file_path = load_file()
-        file_contents = load_file_contents(file_path)
+        load_file()
+
     elif choice == "3":
-        analyze_word_count()
+        analyze_word_count_console()
     elif choice == "0":
         exit_application()
     else:
@@ -57,13 +57,10 @@ def load_file():
     else:
         print(f"File not found: {file_path}")
 
-    return file_path 
-
-def analyze_word_count():
+def analyze_word_count_console():
     if file_contents is not None:
-        # Perform analysis on file_contents here
-        print("Analyzing contents...")
-        # Analysis logic here
+        result = analyze_word_count(file_contents)  # Passing file contents for analyzis
+        print(result) # Printing analysis result
     else:
         print("No file loaded for analysis.")             
 
