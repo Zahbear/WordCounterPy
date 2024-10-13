@@ -10,31 +10,43 @@ def display_file_contents(filename):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-if __name__ == "__main__":
-    display_file_contents('.version.txt')  # Change this to the name of your file
+
+def main_menu():
+    while True:
+        print("\nMain Menu:")
+        print("1. Presentation")
+        print("2. Load File")
+        print("3. Analyze Word Count")
+        print("0. Exit")
+        choice = input("Choose an option: ")
+        handle_menu_choice(choice)
+
+def handle_menu_choice(choice):
+    if choice == "1":
+        display_presentation()
+    elif choice == "2":
+        load_file()
+    elif choice == "3":
+        analyze_word_count()
+    elif choice == "0":
+        exit_application()
+    else:
+        print("Invalid choice. Please try again.")
+
+def display_presentation():
+    display_file_contents('.version.txt') # Display Presentation + version
+
+def load_file():
+    print("Loading file")
+
+def analyze_word_count():
+    print("Analyzing file")
+
+def exit_application():
+    print("Exiting application")
+    exit()
 
 
-#def main_menu():
-#    while True:
-#        print("\nMain Menu:")
-#        print("1. Load File")
-#        print("2. Analyze Word Count")
-#        print("3. Exit")
-#        choice = input("Choose an option: ")
-#        handle_menu_choice(choice)
-
-#def handle_menu_choice(choice):
-#    if choice == "1":
-#        load_file()
-#    elif choice == "2":
-#        analyze_word_count()
-#    elif choice == "3":
-#        exit_application()
-#    else:
-#        print("Invalid choice. Please try again.")
-
-
-#def load_file():
 #    file_path = input("Enter the path of the file: ")
 #    try:
 #        with open(file_path, 'r') as file:
@@ -63,3 +75,8 @@ if __name__ == "__main__":
 #def display_word_count(word_count):
 #    for word, count in word_count.items():
 #        print(f"{word}: {count}")
+
+
+
+if __name__ == "__main__":
+    main_menu()  # Changed file to the Presentation +version
