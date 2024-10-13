@@ -8,13 +8,13 @@ class WordCounterApp(QWidget):
     def __init__(self):
         super().__init__()
         self.init_ui()
-        self.file_contents = None # Variable to store file contents
+        self.file_contents = None  # Variable to store file contents
 
     def init_ui(self):
         self.setWindowTitle('Word Counter with GUI Menu')
 
         # Setting UI window side
-        self.resize(800,600)
+        self.resize(800, 600)
 
         # Create buttons
         self.presentation_button = QPushButton('1. Presentation', self)
@@ -51,16 +51,30 @@ class WordCounterApp(QWidget):
         options = QFileDialog.Options()
         filename, _ = QFileDialog.getOpenFileName(self, 'Open File', '', 'Text Files (*.txt);;All Files (*)', options=options)
         if filename:
-            self.file_contents = load_file_contents(filename) # Storing contents in the instance variable
+            self.file_contents = load_file_contents(filename)  # Storing contents in the instance variable
             if self.file_contents is not None:
                 self.text_area.setPlainText(f"File '{filename}' loaded successfully. Can be analyzed.")
             else:
                 QMessageBox.critical(self, "Error", "Could not load file contents.")
 
     def analyze_word_count(self):
+        if self.file_contents is None:
+            # Display a dialo box asking if they want to add a file
+            reply = QMessageBox.question(self, 'No File Loaded', 
+                                            "No file is loaded, do you want to load a file?", 
+                                            QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                self.load_file()  # Open file dialog
+            elif reply == QMessageBox.No:
+                
+                # Use default 'input.txt'
+                QMessageBox.information(self, "Default File",
+                                            "No file selected. Using default 'input.txt' file.")
+                self.file_contents = load_file_contents('input.txt')
+
         if self.file_contents is not None:
-            result = analyze_word_count()  # Assuming this returns a result
-            self.text_area.setPlainText(f"Analysis Result:\n{result}") # Display the analysis result
+            result = analyze_word_count(self.file_contents)  # Passing file contents for analysis
+            self.text_area.setPlainText(f"Analysis Result:\n{result}")  # Display the analysis result
         else: 
             QMessageBox.warning(self, "Warning", "No file loaded for analysis.")
 

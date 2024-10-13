@@ -26,10 +26,10 @@ Enhanced Development Plan for WordCounter
     1.2.2: Implement input handling to capture user selection.
     1.2.3: Create functions for each menu option that will be accessible, including:
         1.2.3.1: Presentation of the application (similar to presentation() in Java).
-        1.2.3.2: File selection. << We are here
+        1.2.3.2: File selection.
         1.2.3.3: File analysis.
 
-1.3. Additional Menus for Future Functionality
+1.3. Additional Menus for Future Functionality << We are here
 
     1.3.1: Draft a layout for potential submenus for future features.
     1.3.2: Create placeholder functions for submenu options.
