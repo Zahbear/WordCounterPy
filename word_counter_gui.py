@@ -2,7 +2,7 @@
 
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QFileDialog, QTextEdit, QMessageBox
-from shared_functions import display_file_contents, load_file_contents, analyze_word_count  # Import from shared_functions
+from shared_functions import display_file_contents, load_file_contents, analyze_word_count, format_word_count_result  # Import from shared_functions
 
 class WordCounterApp(QWidget):
     def __init__(self):
@@ -66,15 +66,16 @@ class WordCounterApp(QWidget):
             if reply == QMessageBox.Yes:
                 self.load_file()  # Open file dialog
             elif reply == QMessageBox.No:
-                
+
                 # Use default 'input.txt'
                 QMessageBox.information(self, "Default File",
                                             "No file selected. Using default 'input.txt' file.")
                 self.file_contents = load_file_contents('input.txt')
 
         if self.file_contents is not None:
-            result = analyze_word_count(self.file_contents)  # Passing file contents for analysis
-            self.text_area.setPlainText(f"Analysis Result:\n{result}")  # Display the analysis result
+            word_count = analyze_word_count(self.file_contents)  # Analyze the word count
+            formatted_result = format_word_count_result(word_count)  # Format the result
+            self.text_area.setPlainText(f"Analysis Result:\n{formatted_result}")  # Display the formated analysis result
         else: 
             QMessageBox.warning(self, "Warning", "No file loaded for analysis.")
 
