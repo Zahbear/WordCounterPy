@@ -7,9 +7,11 @@ Prerequisites:
 - A file to analyze, the same place as the main
 
 How to use:
-1. Go to the directory where wordcounter.py is
-2. <command> to compile
-3. <command> to run
+    Go to the directory where wordcounter.py is
+    ```bash
+    python3 wordcounter.py
+    ```
+
 
 Note:
 To set a file path, you will need to type in/paste the path to your file
