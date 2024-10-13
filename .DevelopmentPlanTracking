@@ -20,7 +20,7 @@ Enhanced Development Plan for WordCounter
     1.1.1: Implement a function to display a welcome message upon running wordcounter.py.
     1.1.2: Include brief instructions on how to navigate the menu.
 
-1.2. User Interactive Menu
+1.2. User Interactive Menu << We are here
 
     1.2.1: Design the main menu layout and options.
     1.2.2: Implement input handling to capture user selection.
