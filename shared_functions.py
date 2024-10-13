@@ -22,7 +22,7 @@ def load_file_contents(file_path):
     except Exception as e:
         return str(e)
 
-def analyze_word_count(text):
+def analyze_word_count(text, limit=20):
     # This matches strings to detect componded words using special symbols (-, ', `, @)
     word_pattern = r'\b\w+(?:[-\'`@]\w+)*\b'
 
@@ -35,27 +35,23 @@ def analyze_word_count(text):
     # Sort the word count dictionary by frequency, descending, and alphabetically for ties
     sorted_word_count = dict(sorted(word_count.items(), key=lambda item: (-item[1], item[0])))
 
-    return sorted_word_count
+    # Apply limit to result if needed
+    limited_word_count = dict(list(sorted_word_count.items())[:limit])
 
-def OLDnalyze_word_count(contents):
-    if contents is None:
-        return "No contents to analyze."
+    return limited_word_count
 
-    # Regex again to split by word boundaries, ignoring punctuation
-    words = re.findall(r'\b\w+\b', contents.lower())  # Finds all alphanumeric strings, ignoring symbols
-    word_count = len(words)
-    word_occurrences = {}
+def format_word_count_result(word_count):
+    if not word_count:
+        return "No words to display."
 
-    # Count occurrences of each word
-    for word in words:
-        if word in word_occurrences:
-            word_occurrences[word] += 1
-        else:
-            word_occurrences[word] = 1
+    # Find the longest word for column width
+    max_word_length = max(len(word) for word in word_count.keys()) + 2 # Adding 2 spaces for padding
 
-    # Format result and output
-    result = f"Total words: {word_count}, Unique words: {len(word_occurrences)}\n\nWord Occurrences:\n"
-    for word, count in word_occurrences.items():
-        result += f"{word}: {count}\n"
+    # Prepare formatted result as a two-column table
+    result = f"{'Word'.ljust(max_word_length)}| Count\n"
+    result += "-" * (max_word_length + 8) + "\n" # Adding a separator line
+
+    for word, count in word_count.items():
+        result += f"{word.ljust(max_word_length)}| {count}\n"
 
     return result
