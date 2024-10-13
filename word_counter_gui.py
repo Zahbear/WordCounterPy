@@ -2,15 +2,19 @@
 
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QFileDialog, QTextEdit, QMessageBox
-from shared_functions import display_file_contents, load_file, analyze_word_count  # Import from shared_functions
+from shared_functions import display_file_contents, load_file_contents, analyze_word_count  # Import from shared_functions
 
 class WordCounterApp(QWidget):
     def __init__(self):
         super().__init__()
         self.init_ui()
+        self.file_contents = None # Variable to store file contents
 
     def init_ui(self):
         self.setWindowTitle('Word Counter with GUI Menu')
+
+        # Setting UI window side
+        self.resize(800,600)
 
         # Create buttons
         self.presentation_button = QPushButton('1. Presentation', self)
@@ -47,10 +51,18 @@ class WordCounterApp(QWidget):
         options = QFileDialog.Options()
         filename, _ = QFileDialog.getOpenFileName(self, 'Open File', '', 'Text Files (*.txt);;All Files (*)', options=options)
         if filename:
-            load_file()  # Call existing load_file function
+            self.file_contents = load_file_contents(filename) # Storing contents in the instance variable
+            if self.file_contents is not None:
+                self.text_area.setPlainText(f"File '{filename}' loaded successfully. Can be analyzed.")
+            else:
+                QMessageBox.critical(self, "Error", "Could not load file contents.")
 
     def analyze_word_count(self):
-        analyze_word_count()  # Call existing analyze_word_count function
+        if self.file_contents is not None:
+            result = analyze_word_count()  # Assuming this returns a result
+            self.text_area.setPlainText(f"Analysis Result:\n{result}") # Display the analysis result
+        else: 
+            QMessageBox.warning(self, "Warning", "No file loaded for analysis.")
 
     def exit_application(self):
         QApplication.quit()
