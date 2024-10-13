@@ -1,4 +1,4 @@
-Welcome to my domain, the Word Counter (w/ Menu) dimension. Now with extra py! (v.1.2.3.3)
+Welcome to my domain, the Word Counter (w/ Menu) dimension. Now with extra py! (v.1.3)
 Here, I will allow you to select a file, read it, analyze the text,
 and much more. I challenge you to break the flow and cause you an exit (and lmk so i can fix)
 

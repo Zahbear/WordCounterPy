@@ -58,11 +58,21 @@ def load_file():
         print(f"File not found: {file_path}")
 
 def analyze_word_count_console():
+    global file_contents
+
+    if file_contents is None:
+        user_input = input("No file is loaded. Do you want to load a file? (y/n) ").strip().lower()
+        if user_input == 'y':
+            load_file()
+        else:
+            print("No file selected. Using default 'input.txt' file.")
+            file_contents = load_file_contents('input.txt')
+
     if file_contents is not None:
         result = analyze_word_count(file_contents)  # Passing file contents for analyzis
         print(result) # Printing analysis result
     else:
-        print("No file loaded for analysis.")             
+        print("No file loaded for analysis..")             
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == '--gui':

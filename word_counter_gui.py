@@ -58,6 +58,20 @@ class WordCounterApp(QWidget):
                 QMessageBox.critical(self, "Error", "Could not load file contents.")
 
     def analyze_word_count(self):
+        if self.file_contents is None:
+            # Display a dialo box asking if they want to add a file
+            reply = QMessageBox.question(self, 'No File Loaded', 
+                                            "No file is loaded, do you want to load a file?", 
+                                            QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                self.load_file()  # Open file dialog
+            elif reply == QMessageBox.No:
+                
+                # Use default 'input.txt'
+                QMessageBox.information(self, "Default File",
+                                            "No file selected. Using default 'input.txt' file.")
+                self.file_contents = load_file_contents('input.txt')
+
         if self.file_contents is not None:
             result = analyze_word_count(self.file_contents)  # Passing file contents for analysis
             self.text_area.setPlainText(f"Analysis Result:\n{result}")  # Display the analysis result
