@@ -76,6 +76,4 @@ The following features are planned for future releases:
 
 
 ## Notes
-(for later):
-To set a file path, you will need to type in/paste the path to your file
-ex. ~/WordCounterPy/file.type
+- For non-GUI run : File path starts in the same dir as `wordcounter.py`
