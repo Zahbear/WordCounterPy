@@ -1,15 +1,9 @@
 # wordcounter.py
 
-def display_file_contents(filename):
-    try:
-        with open(filename, 'r') as file:
-            contents = file.read()
-            print(contents)
-    except FileNotFoundError:
-        print(f"Error: The file '{filename}' does not exist.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
+import sys
+from PyQt5.QtWidgets import QApplication  # Import QApplication here
+from word_counter_gui import WordCounterApp  # Import the GUI
+from shared_functions import display_file_contents, load_file, analyze_word_count  # Import from shared_functions
 
 def main_menu():
     while True:
@@ -34,17 +28,17 @@ def handle_menu_choice(choice):
         print("Invalid choice. Please try again.")
 
 def display_presentation():
-    display_file_contents('.version.txt') # Display Presentation + version
-
-def load_file():
-    print("Loading file")
-
-def analyze_word_count():
-    print("Analyzing file")
+    print(display_file_contents('.version.txt')) # Display Presentation + version
 
 def exit_application():
     print("Exiting application")
     exit()
+
+def launch_gui():
+    app = QApplication(sys.argv)  # Create the QApplication instance
+    window = WordCounterApp()  # Create the GUI instance
+    window.show()
+    sys.exit(app.exec_())  # Start the event loop
 
 
 #    file_path = input("Enter the path of the file: ")
@@ -79,4 +73,7 @@ def exit_application():
 
 
 if __name__ == "__main__":
-    main_menu()  # Changed file to the Presentation +version
+    if len(sys.argv) > 1 and sys.argv[1] == '--gui':
+        launch_gui()
+    else:
+        main_menu()  # Run console version if no argument is passed

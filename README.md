@@ -46,9 +46,13 @@ Steps to run WordCounterPy (Linux Mint)
 3. **Run the Application:**
 
 How to use:
-   To launch the application, navigate to the project directory, where wordcounter.py is, and run 
+   No UI - To launch the application, navigate to the project directory, where wordcounter.py is, and run 
    ```bash
     python3 wordcounter.py
+   ```
+   With UI - To launch the application, navigate to the project directory, where wordcounter.py is, and run 
+   ```bash
+    python3 wordcounter.py --gui
    ```
 
 ## Dependencies
