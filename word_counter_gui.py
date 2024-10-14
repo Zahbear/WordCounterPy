@@ -17,13 +17,13 @@ class WordCounterApp(QWidget):
         self.resize(800, 600)
 
         # Create buttons
-        self.presentation_button = QPushButton('1. Presentation', self)
+        self.about_button = QPushButton('1. About', self)
         self.load_file_button = QPushButton('2. Load File', self)
         self.analyze_button = QPushButton('3. Analyze Word Count', self)
         self.exit_button = QPushButton('0. Exit', self)
 
         # Connect buttons to their functions
-        self.presentation_button.clicked.connect(self.display_presentation)
+        self.about_button.clicked.connect(self.display_about)
         self.load_file_button.clicked.connect(self.load_file)
         self.analyze_button.clicked.connect(self.analyze_word_count)
         self.exit_button.clicked.connect(self.exit_application)
@@ -34,7 +34,7 @@ class WordCounterApp(QWidget):
 
         # Arrange widgets using a vertical layout
         layout = QVBoxLayout()
-        layout.addWidget(self.presentation_button)
+        layout.addWidget(self.about_button)
         layout.addWidget(self.load_file_button)
         layout.addWidget(self.analyze_button)
         layout.addWidget(self.exit_button)
@@ -42,7 +42,7 @@ class WordCounterApp(QWidget):
 
         self.setLayout(layout)
 
-    def display_presentation(self):
+    def display_about(self):
         contents = display_file_contents('.version.txt')  # Use the existing function
         self.text_area.setPlainText(contents)
 
