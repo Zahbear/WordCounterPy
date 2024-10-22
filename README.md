@@ -68,10 +68,10 @@ The following features are planned for future releases:
 1. **File selection: COMPLETED**
     - Allows user to select a file, eventually by navigating to a file, and select it for analysis
 
-2. **File alaysis: Implemented - improving result output**
+2. **File alaysis: COMPLETED**
     - Will analyze selected file, mapping occurrances of individual words, along with a way to present the results
 
-3. **Result sorting:**
+3. **Result sorting: WIP**
     - Allows user sort the results in different orders or filters
 
 
