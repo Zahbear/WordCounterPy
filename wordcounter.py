@@ -26,7 +26,6 @@ def main_menu():
         print("3. Analyze Word Count")
         print("0. Exit")
         choice = input("Choose an option: ")
-        #print_divider()
         handle_menu_choice(choice)
 
 def handle_menu_choice(choice):
@@ -117,10 +116,14 @@ def analyze_word_count_submenu():
             print(file_contents)
         elif choice == "2":
             print_divider()
-            word_count_result = analyze_word_count(file_contents, result_limit)
-            print(f"\nWord Count Result (Top {result_limit}):")
-            for word, count in word_count_result.items():
-                print(f"{word}: {count}")  # Display the word count without formatting
+
+#            word_count_result = analyze_word_count(file_contents, result_limit)
+#            print(f"\nWord Count Result (Top {result_limit}):")
+#            for word, count in word_count_result.items():
+#                print(f"{word}: {count}")  # Display the word count without formatting
+
+            print_word_count_results() # Call the function to print results based on current format
+
         elif choice == "3":
             print_divider()
             format_word_count_results()  # Call the format submenu
@@ -144,6 +147,35 @@ def analyze_word_count_submenu():
         else:
             print("Invalid choice. Please try again.")
 
+def print_word_count_results():
+    global word_count_result, result_limit, current_format
+
+    if not word_count_result:
+        print("No word count result to display.")
+        return
+
+    # Sort based on current format
+    if current_format == "a-z":
+        sorted_result = sorted(word_count_result.items(), key=lambda x: x[0])  # Alphabetical order
+        print("\nWord Count (Alphabetical Order):")
+    elif current_format == "z-a":
+        sorted_result = sorted(word_count_result.items(), key=lambda x: x[0], reverse=True)  # Reverse alphabetical
+        print("\nWord Count (Reverse Alphabetical Order):")
+    elif current_format == "most":
+        sorted_result = sorted(word_count_result.items(), key=lambda x: x[1], reverse=True)  # Most occurrences
+        print("\nWord Count (Most Occurrences):")
+    elif current_format == "least":
+        sorted_result = sorted(word_count_result.items(), key=lambda x: x[1])  # Least occurrences
+        print("\nWord Count (Least Occurrences):")
+    else:  # current_format == "raw"
+        sorted_result = word_count_result.items()
+        print("\nRaw Word Count Result:")
+
+    # Print the sorted result limited to the result_limit
+    for word, count in list(sorted_result)[:result_limit]:  # Limit to result_limit
+        print(f"{word}: {count}")
+
+
 
 def format_word_count_results():
     global word_count_result, current_format
@@ -163,40 +195,24 @@ def format_word_count_results():
         choice = input("Choose a format: ")
 
         if choice == "1":
-            sorted_result = sorted(word_count_result.items(), key=lambda x: x[0])  # Sort by word (alphabetically)
             current_format = "a-z"
-            print("\nWord Count (Alphabetical Order):")
-            for word, count in sorted_result:
-                print(f"{word}: {count}")
+            print("\nResults will be sorted alphabetically.")
         elif choice == "2":
-            sorted_result = sorted(word_count_result.items(), key=lambda x: x[0], reverse=True)  # Sort by word (reverse alphabetical)
             current_format = "z-a"
-            print("\nWord Count (Reverse Alphabetical Order):")
-            for word, count in sorted_result:
-                print(f"{word}: {count}")
+            print("\nResults will be sorted in reverse alphabetical order.")
         elif choice == "3":
-            sorted_result = sorted(word_count_result.items(), key=lambda x: x[1], reverse=True)  # Sort by count (descending)
             current_format = "most"
-            print("\nWord Count (Most Occurrences):")
-            for word, count in sorted_result:
-                print(f"{word}: {count}")
+            print("\nResults will be sorted by most occurrences.")
         elif choice == "4":
-            sorted_result = sorted(word_count_result.items(), key=lambda x: x[1])  # Sort by count (ascending)
             current_format = "least"
-            print("\nWord Count (Least Occurrences):")
-            for word, count in sorted_result:
-                print(f"{word}: {count}")
+            print("\nResults will be sorted by least occurrences.")
         elif choice == "5":
             current_format = "raw"
-            print("\nRaw Word Count Result:")
-            for word, count in word_count_result.items():
-                print(f"{word}: {count}")  # Display raw result
+            print("\nResults will be displayed in raw order.")
         elif choice == "0":
             break
         else:
             print("Invalid choice. Please try again.")
-
-
 
 
 if __name__ == "__main__":
