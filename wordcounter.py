@@ -8,10 +8,11 @@ from shared_functions import display_file_contents, load_file_contents, analyze_
 
 file_contents = None
 word_count_result = None # Store word count result
-result_limit = 20
+result_limit = 20 # Default result limit
+current_format = "raw" # Default format
 
 os.system('clear')
-print("Word Counter Py v1.3 (terminal)")
+print("Word Counter Py v1.3.2 (terminal)")
 
 def print_divider():
     print ("-" * 40)
@@ -58,20 +59,24 @@ def launch_gui():
     sys.exit(app.exec_())  # Start the event loop
 
 def load_file():
-    global file_contents  # Using the global variable
+    global file_contents, word_count_result
     file_path = input("Enter the path of the file (leave empty for default directory): ")
 
     if not file_path:  # if no input, default to the current directory
         file_path = os.path.join(os.getcwd(), 'input.txt')
-
+    
     file_contents = load_file_contents(file_path)  # Call shared function
+
     if file_contents:
-        print(f"File '{file_path}' loaded successfully.")
+        word_count_result = analyze_word_count(file_contents, result_limit)  # Save result here
+        print(f"File '{file_path}' loaded successfully. Word count analyzed.")
     else:
         print(f"File not found: {file_path}")
+        file_contents = None  # Ensure file_contents is set to None if loading fails
+
 
 def analyze_word_count_submenu():
-    global word_count_result, result_limit, file_contents
+    global word_count_result, result_limit, current_format, file_contents
 
     # Check if a file is selected
     if file_contents is None:
@@ -85,21 +90,24 @@ def analyze_word_count_submenu():
             file_contents = load_file_contents(file_path)
             if file_contents:
                 print(f"Default file '{file_path}' selected")
+                word_count_result = analyze_word_count(file_contents, result_limit)  # Analyze when default selected
             else:
-                print(f"File not found: {file_path}")
+                print(f"File not found: {file_path}")  # This case is already handled
+                file_contents = None  # Ensure it is set to None
                 return
 
+
     if file_contents is None:
-        print("No file loaded for analysis.")
+        print("No file loaded for analysis. Please analyze the file.")
         return
 
     while True:
         print_divider()
         print("\nAnalyze File Submenu:")
-        print("1. Print file contents")
-        print("2. Print word count result")  # Changed from "Print raw word count result"
+        print(f"1. Print file contents")
+        print(f"2. Print Results (Top {result_limit}, {current_format})")  # Changed from "Print raw word count result"
         print("3. Format results")
-        print("4. Set result limit (current: {})".format(result_limit))
+        print(f"4. Set result limit")
         print("0. Return to main menu")
         choice = input("Choose an option: ")
 
@@ -110,7 +118,7 @@ def analyze_word_count_submenu():
         elif choice == "2":
             print_divider()
             word_count_result = analyze_word_count(file_contents, result_limit)
-            print("\nWord Count Result (Top {}):".format(result_limit))
+            print(f"\nWord Count Result (Top {result_limit}):")
             for word, count in word_count_result.items():
                 print(f"{word}: {count}")  # Display the word count without formatting
         elif choice == "3":
@@ -119,7 +127,7 @@ def analyze_word_count_submenu():
         elif choice == "4":
             print_divider()
             try:
-                new_limit = input("Enter a new limit (e.g., 5, 10, 20): ")
+                new_limit = input("Enter a new limit (e.g., 5, 7, 100): ")
                 if not new_limit.strip():
                     raise ValueError
                 new_limit = int(new_limit)
@@ -138,7 +146,7 @@ def analyze_word_count_submenu():
 
 
 def format_word_count_results():
-    global word_count_result
+    global word_count_result, current_format
 
     if not word_count_result:
         print("No word count result to format.")
@@ -148,33 +156,38 @@ def format_word_count_results():
         print("\nFormat Word Count Results Submenu:")
         print("1. Alphabetical")
         print("2. Reverse Alphabetical")
-        print("3. Most")
-        print("4. Least")
-        print("5. Raw")
+        print("3. Most Occurrences")
+        print("4. Least Occurrences")
+        print("5. Raw / As encountered")
         print("0. Return to Analyze submenu")
         choice = input("Choose a format: ")
 
         if choice == "1":
             sorted_result = sorted(word_count_result.items(), key=lambda x: x[0])  # Sort by word (alphabetically)
+            current_format = "a-z"
             print("\nWord Count (Alphabetical Order):")
             for word, count in sorted_result:
                 print(f"{word}: {count}")
         elif choice == "2":
             sorted_result = sorted(word_count_result.items(), key=lambda x: x[0], reverse=True)  # Sort by word (reverse alphabetical)
+            current_format = "z-a"
             print("\nWord Count (Reverse Alphabetical Order):")
             for word, count in sorted_result:
                 print(f"{word}: {count}")
         elif choice == "3":
             sorted_result = sorted(word_count_result.items(), key=lambda x: x[1], reverse=True)  # Sort by count (descending)
+            current_format = "most"
             print("\nWord Count (Most Occurrences):")
             for word, count in sorted_result:
                 print(f"{word}: {count}")
         elif choice == "4":
             sorted_result = sorted(word_count_result.items(), key=lambda x: x[1])  # Sort by count (ascending)
+            current_format = "least"
             print("\nWord Count (Least Occurrences):")
             for word, count in sorted_result:
                 print(f"{word}: {count}")
         elif choice == "5":
+            current_format = "raw"
             print("\nRaw Word Count Result:")
             for word, count in word_count_result.items():
                 print(f"{word}: {count}")  # Display raw result
