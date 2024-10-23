@@ -1,23 +1,19 @@
 # WordCounterPy
 ```bash
-__        _____  ____  ____   ____ ___  _   _ _   _ _____ _____ ____  _ 
-\ \      / / _ \|  _ \|  _ \ / ___/ _ \| | | | \ | |_   _| ____|  _ \| |
- \ \ /\ / / | | | |_) | | | | |  | | | | | | |  \| | | | |  _| | |_) | |
-  \ V  V /| |_| |  _ <| |_| | |__| |_| | |_| | |\  | | | | |___|  _ <|_|
-  _\_/\_/  \___/|_| \_\____/ \____\___/ \___/|_| \_| |_| |_____|_| \_(_)
- / (_)_ __   |  _ \ _   \ \                                             
-| || | '_ \  | |_) | | | | |                                            
-| || | | | | |  __/| |_| | |                                            
-| ||_|_| |_| |_|    \__, | |                                            
- \_\                |___/_/                                             
- _| |_                                                                  
-|_   _|                                                                 
-  |_|                                                                   
- _| |_    _ _   _                                                       
-|_   _| _(_) |_| |__    _ __ ___   ___ _ __  _   _                      
-\ \_/\ / / | __| '_ \  | '_ ` _ \ / _ \ '_ \| | | |                     
- \ V  V /| | |_| | | | | | | | | |  __/ | | | |_| |                     
-  \_/\_/ |_|\__|_| |_| |_| |_| |_|\___|_| |_|\__,_| and gui     
+__        __            _    ____                  _                       
+\ \      / /__  _ __ __| |  / ___|___  _   _ _ __ | |_ ___ _ __            
+ \ \ /\ / / _ \| '__/ _` | | |   / _ \| | | | '_ \| __/ _ \ '__|           
+  \ V  V / (_) | | | (_| | | |__| (_) | |_| | | | | ||  __/ |              
+   \_/\_/ \___/|_|  \__,_|  \____\___/ \__,_|_|_|_|\__\___|_|          __  
+__      _(_) |_| |__               _| || |_   / (_)_ __      _ __  _   \ \ 
+\ \ /\ / / | __| '_ \             |_  ..  _| | || | '_ \    | '_ \| | | | |
+ \ V  V /| | |_| | | |            |_      _| | || | | | |  _| |_) | |_| | |
+  \_/\_/_|_|\__|_| |_|              |_||_|   | ||_|_| |_| (_) .__/ \__, | |
+       / ___| | | |_ _|  _ __ ___   ___ _ __  \_\ _         |_|    |___/_/ 
+      | |  _| | | || |  | '_ ` _ \ / _ \ '_ \| | | |                       
+      | |_| | |_| || |  | | | | | |  __/ | | | |_| |                       
+       \____|\___/|___| |_| |_| |_|\___|_| |_|\__,_|                       
+
   ```
 
 ## Table of Contents
@@ -62,18 +58,26 @@ Core Libraries:
 
 - `PyQt5`: For GUI development
 
+## Implementations
+1. **File selection:**
+    - Allows user to select a file, navigating to a file, and select it for analysis. (Hint:
+        This is when it gets the Results)
+
+2. **File analysis:**
+    - Will manipulate selected file, printing contents, mapping occurrances of individual 
+        words, along with printing the results. Also has a provisional sorting feature.
+
 ## Future Improvements
 The following features are planned for future releases:
 
-1. **File selection: COMPLETED**
-    - Allows user to select a file, eventually by navigating to a file, and select it for analysis
 
-2. **File alaysis: COMPLETED**
-    - Will analyze selected file, mapping occurrances of individual words, along with a way to present the results
+1. **Result sorting: WIP**
+    - Allows user sort the results in different orders or filters. 
+    - Will add more sorting methods (e.g. without words shorter/longer than x chars)
+    - Considering adding a search feature
 
-3. **Result sorting: WIP**
-    - Allows user sort the results in different orders or filters
-
+2. **Constant matching**
+    - Continously implementing CLI code to be used in GUI
 
 ## Notes
 - For non-GUI run : File path starts in the same dir as `wordcounter.py`
