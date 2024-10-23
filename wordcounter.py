@@ -9,7 +9,7 @@ from shared_functions import display_file_contents, load_file_contents, analyze_
 file_contents = None
 word_count_result = None # Store word count result
 result_limit = 20 # Default result limit
-current_format = "raw" # Default format
+current_format = "most" # Default format
 
 os.system('clear')
 print("Word Counter Py v1.3.2 (terminal)")
@@ -190,7 +190,6 @@ def format_word_count_results():
         print("2. Reverse Alphabetical")
         print("3. Most Occurrences")
         print("4. Least Occurrences")
-        print("5. Raw / As encountered")
         print("0. Return to Analyze submenu")
         choice = input("Choose a format: ")
 
@@ -206,9 +205,6 @@ def format_word_count_results():
         elif choice == "4":
             current_format = "least"
             print("\nResults will be sorted by least occurrences.")
-        elif choice == "5":
-            current_format = "raw"
-            print("\nResults will be displayed in raw order.")
         elif choice == "0":
             break
         else:
