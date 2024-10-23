@@ -1,10 +1,10 @@
-Welcome to my domain, the Word Counter (w/ Menu) dimension. Now with extra py! (v.1.3.2)
+Welcome to my domain, the Word Counter (w/ Menu) dimension. Now with extra py! (v2.0.0)
 Here, I will allow you to select a file, read it, analyze the text,
 and much more. I challenge you to break the flow and cause you an exit (and lmk so i can fix)
 
-*File Selector*: This will allow you to select a file on your machine. It will prompt the user to enter a path to a file. After that, it will read the contents.
-*File Analyzer*: Will analyze the text in the file and count the individual occurrences. It will also prompt you for a way to present this info.
+*Load File*: This will allow you to select a file on your machine. It will prompt the user to enter a path to a file. After that, it will read the contents.
+*Analyze Word Count*: Will analyze the text in the file and count the individual occurrences. You can also set a format to present this info.
 *Validation Testing*: This section WILL contain a suite of validation tests to address both functionality, edge cases, and caught errors/loopholes.
 *Exit / Back*: Back will allow you to make a step back in the menu. If you feel you've caught all my secrets, you're free to also Exit the program.
 
-Thank you for being a guest in my Word Counter dimension! 
+Thank you for being a guest in my Word Counter dimension!
