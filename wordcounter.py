@@ -195,18 +195,27 @@ def format_word_count_results():
 
         if choice == "1":
             current_format = "a-z"
-            print("\nResults will be sorted alphabetically.")
+            print_divider() 
+            print("Results will be sorted alphabetically.")
+            return
         elif choice == "2":
             current_format = "z-a"
-            print("\nResults will be sorted in reverse alphabetical order.")
+            print_divider()
+            print("Results will be sorted in reverse alphabetical order.")
+            return
         elif choice == "3":
             current_format = "most"
-            print("\nResults will be sorted by most occurrences.")
+            print_divider()
+            print("Results will be sorted by most occurrences.")
+            return
         elif choice == "4":
             current_format = "least"
-            print("\nResults will be sorted by least occurrences.")
+            print_divider()
+            print("Results will be sorted by least occurrences.")
+            return
         elif choice == "0":
-            break
+            return
+
         else:
             print("Invalid choice. Please try again.")
 
