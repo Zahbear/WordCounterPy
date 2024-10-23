@@ -25,6 +25,7 @@ __      _(_) |_| ||_||_|     |_||_| | ||_|_| |_| (_) .__/ \__, | |
 - [Intro](#introduction)
 - [Installation and Setup](#installation-and-setup)
 - [Dependencies](#dependencies)
+- [Implementations](#implementations)
 - [Future Improvements](#future-improvements)
 - [Notes](#notes)
 
