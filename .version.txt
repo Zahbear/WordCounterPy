@@ -1,4 +1,4 @@
-Welcome to my domain, the Word Counter (w/ GuiMenu) dimension. Now with extra py! (v2.1.0)
+Welcome to my domain, the Word Counter (w/ GuiMenu) dimension. Now with extra py! (v2.1.1)
 Here, I will allow you to select a file, read it, analyze the text,
 and much more. I challenge you to break the flow and cause you an exit (and lmk so i can fix)
 
@@ -8,3 +8,5 @@ and much more. I challenge you to break the flow and cause you an exit (and lmk 
 *Exit / Back*: Back will allow you to make a step back in the menu. If you feel you've caught all my secrets, you're free to also Exit the program.
 
 Thank you for being a guest in my Word Counter dimension!
+
+129 nu e rulat
