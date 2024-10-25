@@ -8,13 +8,14 @@ class WordCounterApp(QWidget):
     def __init__(self):
         super().__init__()
         self.init_ui()
-        self.file_contents = None  # Variable to store file contents
 
     def init_ui(self):
         self.setWindowTitle('Word Counter with GUI Menu')
+        self.setGeometry(100, 100, 600, 400)
 
         # Setting UI window side
-        self.resize(800, 600)
+        # self.resize(800, 600)
+        layout = QVBoxLayout()
 
         # Create buttons
         self.about_button = QPushButton('1. About', self)
@@ -26,7 +27,7 @@ class WordCounterApp(QWidget):
         self.about_button.clicked.connect(self.display_about)
         self.load_file_button.clicked.connect(self.load_file)
         self.analyze_button.clicked.connect(self.analyze_word_count)
-        self.exit_button.clicked.connect(lambda: exit_application)
+        self.exit_button.clicked.connect(self.exit_application)
 
         # Create a text area for displaying content
         self.text_area = QTextEdit(self)

@@ -2,13 +2,13 @@
 
 import sys
 import os
+from PyQt5.QtWidgets import QApplication
 from word_counter_gui import WordCounterApp  # Import the GUI
 from shared_functions import (
-    display_file_contents, 
-    load_file_contents, analyze_word_count, 
-    analyze_word_count_submenu, 
-    format_word_count_result, print_word_count_results,
-    format_word_count_results, set_result_limit, exit_application
+    # display_file_contents, exit_application,
+    load_file_contents, print_word_count_results, 
+    analyze_word_count, analyze_word_count_submenu, 
+    format_word_count_result, set_result_limit
 ) # Import from shared_functions
 
 file_contents = None
@@ -68,13 +68,13 @@ def load_file():
         pritn("Could not load file contents")
 
 def analyze_word_count_cli():
-    global file_contents, word_count_result, result_limit, current_format
+    global file_contents, word_count_result
     if file_contents is None:
         print("No file is loaded. Using default 'input.txt' file.")
         file_contents = load_file_contents('input.txt')
     if file_contents:
-        word_count = analyze_word_count(file_contents)
         file_contents, word_count_result = analyze_word_count_submenu(file_contents, word_count_result, result_limit, current_format)
+        formatted_result = format_word_count_result(word_count_result)
     else:
         print("No file loaded for analysis.")
 
@@ -119,6 +119,13 @@ def format_word_count_results():
 
         else:
             print("Invalid choice. Please try again.")
+
+def launch_gui():
+        # Initialize and launch the GUI version of the Word Counter.
+    app = QApplication(sys.argv)
+    window = WordCounterApp()
+    window.show()
+    sys.exit(app.exec_())
 
 
 if __name__ == "__main__":

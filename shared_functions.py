@@ -6,7 +6,11 @@ from collections import Counter
 import sys
 from PyQt5.QtWidgets import QApplication
 
-def analyze_word_count_submenu():
+word_count_result = {}
+result_limit = 20
+file_contents = None
+
+def analyze_word_count_submenu(file_contents, word_count_result, result_limit, current_format):
     global word_count_result, result_limit, current_format, file_contents
 
     # Check if a file is selected
@@ -55,7 +59,7 @@ def analyze_word_count_submenu():
 
 
 def print_word_count_results(word_count, result_limit, format_type):
-    """Prints word count results based on the current format."""
+    # Prints word count results based on the current format.
     if format_type == 'raw':
         for word, count in word_count.items():
             print(f"{word}: {count}")
@@ -64,7 +68,7 @@ def print_word_count_results(word_count, result_limit, format_type):
         print(formatted_result)
 
 def format_word_count_results():
-    """Provides format submenu to choose display format."""
+    # Provides format submenu to choose display format.
     while True:
         print("\nChoose result format:")
         print("1. Raw (word: count)")
@@ -101,16 +105,16 @@ def load_file_contents(file_path):
         return str(e)
 
 def analyze_word_count(text, sort_by='frequency', limit=20):
-    """Analyze word counts in a given text with optional sorting and limit parameters.
+    # Analyze word counts in a given text with optional sorting and limit parameters.
     
-    Args:
-        text (str): The input text to analyze.
-        sort_by (str): The sorting criteria, either 'frequency' or 'alphabetical'.
-        limit (int): Maximum number of results to return.
+    # Args:
+    #    text (str): The input text to analyze.
+    #    sort_by (str): The sorting criteria, either 'frequency' or 'alphabetical'.
+    #    limit (int): Maximum number of results to return.
 
-    Returns:
-        dict: A dictionary of word counts, limited and sorted by the specified criteria.
-    """
+    #Returns:
+    #    dict: A dictionary of word counts, limited and sorted by the specified criteria.
+    #
     # Match words with potential compound symbols (hyphens, apostrophes, etc.)
     word_pattern = r'\b\w+(?:[-\'`@]\w+)*\b'
     words = re.findall(word_pattern, text.lower())
@@ -127,14 +131,13 @@ def analyze_word_count(text, sort_by='frequency', limit=20):
     return limited_word_count
 
 def format_word_count_result(word_count):
-    """Format the word count results for display.
+    #Format the word count results for display.
     
-    Args:
-        word_count (dict): A dictionary of word counts.
+    #Args:
+    #    word_count (dict): A dictionary of word counts.
 
-    Returns:
-        str: A formatted string representing the word count results.
-    """
+    #Returns:
+    #   str: A formatted string representing the word count results.
     if not word_count:
         return "No words to display."
 
@@ -148,7 +151,7 @@ def format_word_count_result(word_count):
     return result
 
 def set_result_limit():
-    """Sets result limit for word count display."""
+    # Sets result limit for word count display.
     try:
         new_limit = input("Enter a new limit (e.g., 5, 7, 100): ")
         if not new_limit.strip():
@@ -162,11 +165,11 @@ def set_result_limit():
         return 20
 
 def exit_application(app_type="CLI"):
-    """Exit the application, determining behavior based on app type (CLI or GUI).
+    #Exit the application, determining behavior based on app type (CLI or GUI).
     
-    Args:
-        app_type (str): 'CLI' or 'GUI' to specify the application type.
-    """
+    #Args:
+    #    app_type (str): 'CLI' or 'GUI' to specify the application type.
+    
     if app_type == "GUI":
         QApplication.quit()
     else:
