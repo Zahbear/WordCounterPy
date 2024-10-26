@@ -11,7 +11,6 @@ result_limit = 20
 file_contents = None
 
 def analyze_word_count_submenu(file_contents, word_count_result, result_limit, current_format):
-    global word_count_result, result_limit, current_format, file_contents
 
     # Check if a file is selected
     if file_contents is None:
@@ -30,7 +29,7 @@ def analyze_word_count_submenu(file_contents, word_count_result, result_limit, c
             else:
                 print(f"File not found: {file_path}")  # This case is already handled
                 file_contents = None  # Ensure it is set to None
-                return file_contents, word_count # Return the state
+                return file_contents, word_count_result # Return the state
 
     while True:
         print_divider()
@@ -45,12 +44,12 @@ def analyze_word_count_submenu(file_contents, word_count_result, result_limit, c
         if choice == "1":
             display_file_contents(file_contents)
         elif choice == "2":
-            print_word_count_results(word_count, result_limit, current_format) # Call the function to print results based on current format
+            print_word_count_results(word_count_result, result_limit, current_format) # Call the function to print results based on current format
         elif choice == "3":
-            format_word_count_results()  # Call the format submenu
+            current_format = format_word_count_results()  # Call the format submenu
         elif choice == "4":
             result_limit = set_result_limit()
-            word_count = analyze_word_count(file_contents, result_limit)
+            word_count_result = analyze_word_count(file_contents, result_limit)
         elif choice == "0":
             break
         else:

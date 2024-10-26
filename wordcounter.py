@@ -5,7 +5,7 @@ import os
 from PyQt5.QtWidgets import QApplication
 from word_counter_gui import WordCounterApp  # Import the GUI
 from shared_functions import (
-    # display_file_contents, exit_application,
+    display_file_contents, exit_application,
     load_file_contents, print_word_count_results, 
     analyze_word_count, analyze_word_count_submenu, 
     format_word_count_result, set_result_limit
