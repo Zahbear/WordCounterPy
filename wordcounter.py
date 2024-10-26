@@ -60,12 +60,33 @@ def launch_gui():
 
 def load_file():
     global file_contents
-    file_path = input("Enter the file path:")
-    file_contents = load_file_contents(filename)
-    if file_contents:
-        print(f"File `{filename}` loaded successfully. Ready for analysis.")
+    
+    # Get the directory where wordcounter.py is located
+    start_dir = os.path.dirname(os.path.abspath(__file__))
+    start_dir_display = start_dir.replace(os.path.expanduser("~"), "~") #   Display with `~` for home directory
+    default_file = "input.txt"
+
+    # Multi-line prompt, default file input.txt
+    file_path = input(
+        f"Enter the file path (relative to '{start_dir_display}' or full path): \n"
+        "Leave blank to load default file.\n"
+    ).strip()   
+
+    if not file_path:
+        full_path = os.path.join(start_dir, default_file)
     else:
-        pritn("Could not load file contents")
+        full_path = os.path.join(start_dir, file_path) if not os.path.isabs(file_path) else file_path
+
+    try:
+        file_contents = load_file_contents(full_path)
+        if file_contents:
+            # Shorten path displayed, showing "~/" for home directory if applicable
+            display_path = full_path.replace(os.path.expanduser("~"), "~")
+            print(f"File `{display_path}` loaded successfully. Ready for analysis.")
+        else:
+            print("File is empty or unreadable.")
+    except Exception as e:
+        print(f"Error: Could not load file contents. Reason: {e}")
 
 def analyze_word_count_cli():
     global file_contents, word_count_result

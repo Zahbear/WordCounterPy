@@ -10,6 +10,9 @@ word_count_result = {}
 result_limit = 20
 file_contents = None
 
+def print_divider():
+    print ("-" * 40)
+
 def analyze_word_count_submenu(file_contents, word_count_result, result_limit, current_format):
 
     # Check if a file is selected
@@ -54,7 +57,7 @@ def analyze_word_count_submenu(file_contents, word_count_result, result_limit, c
             break
         else:
             print("Invalid choice. Please try again.")
-    return file_contents, word_count
+    return file_contents, word_count_result
 
 
 def print_word_count_results(word_count, result_limit, format_type):
